@@ -36,4 +36,4 @@ while (1) {
 <p style="text-align: justify;">El circuito está alimentado por cuatro pilas NI-MH de 1,2V (3000mAh) lo que da 4,8V y una autonomía bastante buena (días), teniendo en cuenta que el servo se mueve muy lento.</p>
 <p style="text-align: justify;">Como el servo es de aeromodelismo y no tiene una gran precisión, el movimiento es algo brusco.</p>
 <p style="text-align: justify;">Aquí os dejo un link de lo que ha conseguido hacer Xisco con este proyecto:</p>
-https://www.youtube.com/watch?v=60TMCAatmts
+<iframe width="560" height="315" src="https://www.youtube.com/embed/60TMCAatmts?rel=0" frameborder="0" allowfullscreen></iframe>

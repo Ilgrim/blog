@@ -34,4 +34,4 @@ El mapa del juego ocupa 800 bytes, y la VRAM en 80x80, otros 800. Eso me deja, e
 
 Aquí os dejo el esquemático...
 
-<a href="http://yombotronics.files.wordpress.com/2011/09/esquemayombox.png"><img class="aligncenter size-medium wp-image-10" title="EsquemaYombox" src="http://yombotronics.files.wordpress.com/2011/09/esquemayombox.png?w=300" alt="" width="300" height="237" /></a>
+<a href="http://yombo.org/wp-content/uploads/2011/09/esquemayombox.png"><img class="aligncenter size-medium wp-image-10" title="EsquemaYombox" src="http://yombo.org/wp-content/uploads/2011/09/esquemayombox.png?w=300" alt="" width="300" height="237" /></a>

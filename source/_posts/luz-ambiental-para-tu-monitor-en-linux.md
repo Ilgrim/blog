@@ -47,14 +47,14 @@ tags:
 <h3 style="text-align: justify;">Fotos</h3>
 <p style="text-align: justify;">A continuación unas fotos. Click para tamaño completo. La verdad es que la ubicación de mi pantalla no es la mejor para mostrar la luz ambiente, porque no tengo una pared blanca detrás sino la ventana. Pero aún así se ve algo.</p>
 <p style="text-align: justify;">Esta es la caja en la que he metido el circuito. A la izquierda el conector USB blanco, debajo el cable plateado que también es USB pero sólo alimenta los LEDs (va a un transformador de 5V 1A que se ve en el margen superior). Los cables de los LEDs son los blancos (de momento sólo tengo tres LEDs conectados, el cuarto me ha de llegar de DealExtreme):</p>
-<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/caja.jpg"><img class="aligncenter size-medium wp-image-139" alt="caja" src="http://yombo.org/wp-content/uploads/2012/12/caja-300x200.jpg" width="300" height="200" /></a></p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/caja.jpg"><img class="aligncenter size-medium wp-image-139" alt="caja" src="http://yombo.org/wp-content/uploads/2012/12/caja.jpg" width="300" height="200" /></a></p>
 <p style="text-align: justify;">Aquí se puede ver un LED adosado a la pantalla, con sus resistencias. Está pegado con velcro, el cual está pegado con cianocrilato a la pantalla:</p>
-<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/led.jpg"><img class="aligncenter size-medium wp-image-140" alt="led" src="http://yombo.org/wp-content/uploads/2012/12/led-300x200.jpg" width="300" height="200" /></a></p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/led.jpg"><img class="aligncenter size-medium wp-image-140" alt="led" src="http://yombo.org/wp-content/uploads/2012/12/led.jpg" width="300" height="200" /></a></p>
 <p style="text-align: justify;">Aquí la pantalla iluminada completamente en rojo...</p>
-<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/rojo.jpg"><img class="aligncenter size-medium wp-image-141" alt="rojo" src="http://yombo.org/wp-content/uploads/2012/12/rojo-300x200.jpg" width="300" height="200" /></a>Y aquí en azul (la del verde os la imagináis no?):</p>
-<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/azul.jpg"><img class="aligncenter size-medium wp-image-142" alt="azul" src="http://yombo.org/wp-content/uploads/2012/12/azul-300x200.jpg" width="300" height="200" /></a></p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/rojo.jpg"><img class="aligncenter size-medium wp-image-141" alt="rojo" src="http://yombo.org/wp-content/uploads/2012/12/rojo.jpg" width="300" height="200" /></a>Y aquí en azul (la del verde os la imagináis no?):</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/azul.jpg"><img class="aligncenter size-medium wp-image-142" alt="azul" src="http://yombo.org/wp-content/uploads/2012/12/azul.jpg" width="300" height="200" /></a></p>
 <p style="text-align: justify;">Y un fotograma de Star Gate. La verdad que esta foto no hace honor a cómo se ve en persona:</p>
-<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/Tealc.jpg"><img class="aligncenter size-medium wp-image-143" alt="Teal'c" src="http://yombo.org/wp-content/uploads/2012/12/Tealc-300x200.jpg" width="300" height="200" /></a></p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2012/12/Tealc.jpg"><img class="aligncenter size-medium wp-image-143" alt="Teal'c" src="http://yombo.org/wp-content/uploads/2012/12/Tealc.jpg" width="300" height="200" /></a></p>
 
 <h3 style="text-align: justify;"></h3>
 <h3 style="text-align: justify;"> Esquemático y código fuente</h3>
