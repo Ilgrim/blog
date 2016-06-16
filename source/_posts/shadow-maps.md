@@ -1,0 +1,16 @@
+---
+title: "Shadow maps"
+date: 2014-01-01 04:16:53
+tags: 
+---
+<p style="text-align: justify;">Antes de nada, ¡feliz año!</p>
+<p style="text-align: justify;">Recientemente he implementado sombras dinámicas en Antares mediante <em>shadow maps.</em> Esta técnica consiste en tener una textura en la que se representa la escena poniendo la cámara en el lugar donde está la luz que proyecta las sombras. En esa textura no se guarda el color, sino la profundidad, o sea la distancia desde la luz hasta el punto iluminado.</p>
+<p style="text-align: justify;">Cuando, posteriormente durante el mismo <em>frame</em>, se dibuja la escena desde la cámara final, se usa la textura de profundidad para, sabiendo la posición del píxel actual, ver si es menor que la distancia guardada en la textura de profundidad. Para ello hay que convertir las coordenadas del píxel actual al espacio de la luz y proyectarlas, obteniendo las coordenadas de textura. Si efectivamente la distancia es menor, el píxel está iluminado. Si no, el píxel está en sombra.</p>
+<p style="text-align: justify;">Se necesita representar la escena en una textura de profundidad para cada luz que proyecta sombras, por lo que esta técnica requiere bastantes recursos. Con más de tres luces empieza a ir lento. Hay que tener en cuenta que mi filosofía en este motor es llevar al extremo el término KISS (<em>Keep It Simple, Stupid</em>). No hago optimizaciones (salvo alguna caché en la carga de recursos) y procuro mantener el código simple.</p>
+<p style="text-align: justify;">Me faltaría por implementar las sombras para luces direccionales, como el Sol. Para ello necesitaré implementar cámaras ortogonales en Antares, cosa que aún no he hecho porque no he necesitado. Naturalmente el <em>shadow map</em> sólo puede cubrir una superfície limitada, por lo que tendría que ajustar la parte iluminada a lo que está viendo el jugador, y no sé si quedaría bien. En juegos comerciales lo que se usa es la técnica de <em>cascaded shadow mapping</em>, que usa <em>shadow maps</em> de fiferentes resoluciones para cubrir zonas progresivamente más alejadas de la cámara, pero como digo yo no hago optimizaciones de ese tipo.</p>
+<p style="text-align: justify;">He tardado 4 días en implementar esto. Un día para investigar y pensarlo, y tres días para programarlo, aunque uno de esos tres días (el del medio) lo pasé bloqueado por un <em>bug</em> que me impedía progresar.</p>
+<p style="text-align: justify;">Os dejo algunas imágenes y vídeos, hasta la próxima!</p>
+<p style="text-align: center;"><a href="http://yombo.org/wp-content/uploads/2014/01/pruebasShadowMap2.png"><img class="aligncenter size-large wp-image-862" alt="pruebasShadowMap2" src="http://yombo.org/wp-content/uploads/2014/01/pruebasShadowMap2-1024x576.png" width="625" height="351" /></a>La primera sombra que conseguí, aún en desarrollo</p>
+<iframe src="//www.youtube.com/embed/N_JkyPlwuk0?rel=0" height="352" width="625" allowfullscreen="" frameborder="0"></iframe>
+
+<iframe src="//www.youtube.com/embed/hrTE0ZNcRVA?rel=0" height="352" width="625" allowfullscreen="" frameborder="0"></iframe>

@@ -1,0 +1,17 @@
+---
+title: "Mando IR, segunda parte"
+date: 2013-05-03 01:22:10
+tags: 
+---
+<p style="text-align: justify;">En esta parte conectaré el display de 7 segmentos y el registro 74HC595. <a title="Mando universal IR: Prototipo en protoboard paso a paso" href="http://yombo.org/2013/05/mando-universal-ir-prototipo-en-protoboard-paso-a-paso-2/">Mira la primera parte </a>para saber de qué va.</p>
+<p style="text-align: justify;">Empiezo conectando el registro 74HC595 con la muesca hacia la izquierda, y con su alimentación y masa:</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/05/9-MandoIRProtoboard.jpg"><img class="aligncenter size-large wp-image-633" alt="9 MandoIRProtoboard" src="http://yombo.org/wp-content/uploads/2013/05/9-MandoIRProtoboard-1024x768.jpg" width="625" height="468" /></a></p>
+<p style="text-align: justify;">Conectamos el reset del registro a alimentación, para que nunca resetee, y el <em>output enable</em> a masa, para que siempre vuelque su contenido a los LED. Ahora conecto el display, con su alimentacioń (todos los LED tienen el ánodo común). También he conectado las líneas de alimentación y masa de las dos partes del protoboard separadas entre sí:</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/05/10-MandoIRProtoboard.jpg"><img class="aligncenter size-large wp-image-634" alt="10 MandoIRProtoboard" src="http://yombo.org/wp-content/uploads/2013/05/10-MandoIRProtoboard-1024x768.jpg" width="625" height="468" /></a></p>
+<p style="text-align: justify;">Ahora conectamos las líneas que van del micro al registro, concretamente de los pines 10, 11 y 12 al clock, datos y clock de volcado. En cada flanco del clock se admite el bit que hay en datos, y en cada flanco del clock de volcado se vuelva el registro interno a las salidas del chip.</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/05/11-MandoIRProtoboard.jpg"><img class="aligncenter size-large wp-image-636" alt="11 MandoIRProtoboard" src="http://yombo.org/wp-content/uploads/2013/05/11-MandoIRProtoboard-1024x768.jpg" width="625" height="468" /></a></p>
+<p style="text-align: justify;">Ahora conectamos los pines de salida del registro a los pines de los LEDs. para ello he usado las resistencias limitadoras de corriente directamente. El pinout del display de 7 segmentos puede variar, hay que hacer pruebas antes para saber dónde está la alimentación o masa común y los pines de cada LED. Aquí se ve ya funcionando con el <a href="http://yombo.org/wp-content/uploads/2013/05/Sketch2.ino_.zip">Sketch2.ino:</a></p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/05/12-MandoIRProtoboard.jpg"><img class="aligncenter size-large wp-image-637" alt="12 MandoIRProtoboard" src="http://yombo.org/wp-content/uploads/2013/05/12-MandoIRProtoboard-1024x768.jpg" width="625" height="468" /></a></p>
+<p style="text-align: justify;">Y aquí un vídeo de demostración, contando de 0 a 15 (F en hexadecimal):</p>
+<iframe src="http://www.youtube.com/embed/7P5qr5obfMo" height="315" width="420" allowfullscreen="" frameborder="0"></iframe>
+<p style="text-align: justify;">En el próximo post pondré el teclado de membrana y el botón para programar los canales, y ya estará terminado, quedará hacer el programa final. Hasta la próxima!</p>

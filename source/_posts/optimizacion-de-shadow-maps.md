@@ -1,0 +1,13 @@
+---
+title: "Optimización de Shadow Maps"
+date: 2014-06-10 15:16:24
+tags: 
+---
+<p style="text-align: justify;">He hecho una optimización en las sombras del motor 3D bastante buena, con la que han subido unos 20-25 los Frames Per Second (FPS) en ZXVR con dos luces (la lámpara y el monitor)</p>
+<p style="text-align: justify;">Como seguramente debes saber, en la técnica del <em>shadow</em> <em>mapping</em> se representa la escena desde la posición de la luz, para obtener una imagen de profundidad o "búfer Z". Esta imagen de profundidad se usa a continuación en la representación final desde la cámara, para saber qué píxeles están en sombra y cuáles están iluminados.</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2014/06/shadow_map_example.png"><img class="aligncenter size-full wp-image-995" alt="shadow_map_example" src="http://yombo.org/wp-content/uploads/2014/06/shadow_map_example.png" width="625" height="626" /></a></p>
+<p style="text-align: justify;">Pues bien, para representar la escena desde la luz yo lo hacía exactamente igual que para la cámara, así que aunque sólo se estuviera escribiendo en el búfer Z y no hubiera ningún búfer de color, los <em>shaders</em> usados en la escena estaban haciendo todos los cálculos de texturizado e iluminación, vamos, que se estaba calculando el color de los píxeles cuando sólo se usa el valor Z de la posición para escribir en el búfer de profundidad.</p>
+<p style="text-align: justify;">La optimización ha consistido en usar un <em>shader</em> simple, muy rápido, durante el dibujado de la escena vista por la luz, en lugar de establecer el <em>shader</em> de cada material de los objetos. Además de que este <em>shader</em> se ejecuta mucho más rápido, el hecho de usar un sólo <em>shader</em> para toda la escena –sin estar cambiando de <em>shader</em> para cada material– implica que no se cambia el estado de OpenGL y se acelera mucho el proceso.</p>
+<p style="text-align: justify;">El inconveniente de esta optimización es que no puedo usar <em>geometry shaders</em> para generar geometría, a no ser que en la escena sólo se usase un único <em>shader</em>, o que el objeto con <em>geometry shader</em> no arroje sombras. Por ejemplo, yo uso un <em>geometry shader</em> para representar texto en 3D (cada letra está formada por un solo punto que se expande después a un cuadrilátero), pero como no me importa que el texto no tenga sombras (si se trata del menú de ZXVR por ejemplo), pues le desactivo la escritura en el búfer Z y problema solucionado.</p>
+<p style="text-align: justify;">Por eso he hecho que la optimización se use opcionalmente, sólo si la aplicación lo especifica.</p>
+<p style="text-align: justify;">Hasta la próxima!</p>

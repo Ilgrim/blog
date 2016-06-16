@@ -1,0 +1,17 @@
+---
+title: "java.util.Vector está obsoleta..."
+date: 2013-10-12 20:43:19
+tags: 
+---
+<p style="text-align: justify;"><b>@</b>yombo: He cambiado el uso de Vector por ArrayList en Antares</p>
+<p style="text-align: justify;">@airsynth: @yombo Me tienes que explicar eso</p>
+<p style="text-align: justify;">Pues ahí va:</p>
+<p style="text-align: justify;">Las clases <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Vector.html" target="_blank">java.util.Vector</a> y <a href="http://docs.oracle.com/javase/6/docs/api/java/util/ArrayList.html" target="_blank">java.util.ArrayList</a> son muy parecidas, ambas abstraen una lista de objetos usando un <em>array</em> para mantener las referencias (en contraposición a LinkedList por ejemplo, que usa una lista enlazada). Esto significa que las operaciones de obtener un elemento, sustituirlo, o añadirlo al final de la lista sean de tiempo constante, O(1), mientras que otras operaciones como insertar en medio de la lista son de tiempo lineal (O(n)). En la LinkedList es al revés, la inserción es O(1) mientras que el acceso aleatorio a un elemento es O(n).</p>
+<p style="text-align: justify;">Sabiendo qué tipo de operaciones iba a necesitar en el motor de Antares, escogí usar una clase basada en <em>array</em> como lista estándar en el programa. Y escogí Vector, pero porque fue la primera que encontré. Hace un tiempo vi que existía también ArrayList y que quizá sería mejor usarla, así que investigué las diferencias. Y efectivamente, Vector estaba en la especificación original de Java 1.0, era lo primero que parieron, y tiene algunos defectos de diseño en la especificación.</p>
+<p style="text-align: justify;">El más flagrante es que todas las operaciones que se pueden hacer con un Vector (muchos de  los métodos de la clase) están sincronizados. Es decir, cada vez que haces miVector.get( i ), estás obteniendo acceso a un semáforo y volviéndolo a soltar. Por otra parte cada vez que se itera sobre un Vector, si éste es modificado desde otro hilo, se genera una excepción. Todo esto es muy farragoso y lento, en teoría.</p>
+<p style="text-align: justify;">Además es bastante inútil, porque es mejor sincronizar secuencias de operaciones, no operaciones aisladas. Por tanto la sincronización es desde fuera, la clase Vector no debería estar sincronizada.</p>
+<p style="text-align: justify;">Y bueno, la clase ArrayList <strong>no</strong> está sincronizada, así que hace poco hice la sustitución en todo el código del Antares de Vector por ArrayList. Eso significó modificar el 90% de los ficheros de Antares. Afortunadamente tienen interfases muy parecidas, sólo tuve que cambiar una docena de llamadas a métodos rebuscados de Vector por sus equivalentes de ArrayList.</p>
+<p style="text-align: justify;">Al final, el rendimiento no ha mejorado ni ha empeorado, no ha habido cambio. Supongo que para que se notase algo habría que usar listas de miles de elementos, pero bueno.</p>
+<p style="text-align: justify;">Como nota final, decir que en Antares se usa un sólo hilo para todo menos para el sonido, por tanto no necesito ninguna sincronización, y de necesitarla usaría sincronización externa, no usaría sincronización interna como en Vector.</p>
+<p style="text-align: justify;">Hasta la próxima!</p>
+<p style="text-align: justify;"></p>

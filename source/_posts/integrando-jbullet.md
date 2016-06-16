@@ -1,0 +1,43 @@
+---
+title: "Integrando JBullet"
+date: 2013-12-18 14:21:27
+tags: 
+---
+<p style="text-align: justify;">Estos días he estado haciendo algo que llebava tiempo pensando y ya había descartado por considerarlo demasiado complicado. Se trata de integrar un motor de física en Antares, y ha funcionado muy bien, en realidad ha sido poco esfuerzo para lo mucho que he conseguido.</p>
+<p style="text-align: justify;">La mejor opción actualmente para Java parece ser JBullet, un port de la librería open source Bullet que está algo atrasada (se basa en la versión 2.72 de Bullet cuando ya se está por la 2.82 y se está preparando la 3.0, con soporte para ejecutar los cálculos en la GPU, vía OpenCL). JBullet es puro Java y funciona bastante bien, aunque ya lleva unos años estancado y posiblemente no saquen más versiones.</p>
+<p style="text-align: justify;">Para integrar un motor de física hace falta:</p>
+
+<ul>
+	<li style="text-align: justify;">Inicializar los objetos con su malla de colisión, masa, posición, orientación, velocidad lineal y angular.</li>
+	<li style="text-align: justify;">En cada frame, ejecutar el método <em>timestep</em> o similar que realiza la simulación.</li>
+	<li style="text-align: justify;">En cada frame, obtener la posición y orientación de cada objeto desde el motor de física y actualizar las matrices de los objetos que se van a dibujar.</li>
+</ul>
+<p style="text-align: justify;">En el último paso yo además hago algo que no es necesario: obtener de cada objeto también sus velocidades lineales y angulares, para tener mis objetos de dinámica sincronizados, y en el evento de que se guarde el juego, que se guarden estos valores de cada objeto. Esto es necesario porque los objetos de JBullet no se pueden serializar. De forma que cada vez que se carga un juego se vuelven a crear todos los objetos de física y se inicializan (se cargan sus valores) desde los objetos de dinámica, que sí son míos y se serializan con el juego.</p>
+
+<h3 style="text-align: justify;">Niveles del motor Antares</h3>
+<p style="text-align: justify;">En Antares (llamo así al motor además de al inacabable juego), hay tres niveles de abstracción, y una aplicación o juego permanece en uno de ellos, según qué necesite. Los niveles son, de menor a mayor complejidad (un nivel incluye a los superiores):</p>
+
+<ul>
+	<li style="text-align: justify;">Objetos 3D. En este nivel sólo hay objetos 3D estáticos, sin dinámica. Cualquier animación corre por cuenta de la aplicación. Los objetos 3D pueden estar anidados jerárquicamente. El paquete es <em>motor3d</em>.</li>
+	<li style="text-align: justify;">Dinámica. Hay una dinámica genérica. Se introducen los ObjetoDinamica. Un ObjetoDinamica tiene asociado un Objeto3d y tiene dinámica de sólido rígido, aunque la rotación puede ser interpolada (calculada, como la rotación de la nave con el ratón). Los ObjetoDinamica no tienen una relación jerárquica, aunque sus objetos 3d pueden tener más objetos 3d hijos anidados. El paquete es <em>dinamica</em>.</li>
+	<li style="text-align: justify;">Espacio. Los ObjetoDinamicaEspacial pueden estar en un rango de algunos cientos de miles de millones de kilómetros respecto al centro del sistema solar¹. Tienen concepto de anidación jerárquica de varios tipos: un objeto puede estar (además de flotando libremente) 1) acoplado, 2) fijo² respecto a o 3) orbitando a otro. Se introducen los Astros como subtipo de ObjetoDinamicaEspacial. El paquete es <em>espacio</em>.</li>
+</ul>
+<p style="text-align: justify;">Por ejemplo, el EditorArena usa la abstracción de objetos 3d, mientras que Antares usaría la de Espacio. El segundo nivel no lo he usado aún en ninguna aplicación. Bueno, excepto en Toterreno, el juego de coches inacabado y que ya está obsoleto (en vez de mantenerlo integrado en Antares lo separé, y fue un error porque al actualizar la versión de JOGL Toterreno se quedó obsoleto)</p>
+<p style="text-align: justify;">La distinción entre el segundo y el tercer nivel es necesaria porque para aplicaciones que necesiten abarcar el sistema solar, no se pueden pasar a OpenGL las posiciones de los objetos como tipo <em>double</em> (valor de coma flotante de 64 bits), sino como <em>float</em> (de 32 bits), los cuales no son suficientes. La solución es pasarle a OpenGL la posición del objeto relativa a la cámara, que estará mucho más cerca (ya que mediante <em>culling </em>se determina qué objetos van a ser visibles)</p>
+
+<h3 style="text-align: justify;">Integración de JBullet</h3>
+<p style="text-align: justify;">JBullet utiliza internamente floats (Aunque la versión original en C++ puede funcionar con doubles). Entonces, ¿cómo he hecho para integrarlo? Pues decidiendo que los objetos controlados por JBullet forman una subdinámica dentro del espacio del sistema solar. Los objetos con física JBullet han de estar acoplados a un objeto que hace de base. Éste es un ObjetoDinamicaEspacial que funciona con mi física de Antares, puede estar orbitando, o a su vez acoplado a otro objeto o planeta. En concreto puede ser un objeto sin visual (Objeto3d) acoplado a la superfície de un planeta. Los objetos acoplados al objeto base siempre se mueven en el marco de la base, sin importar lo que ocurra alrededor de ésta.</p>
+<p style="text-align: justify;">En JBullet el espacio no puede ser muy grande (lo estándar son unos 10 Km), así que ése es el rango de movimiento que tienen los objetos alrededor de la base.</p>
+<p style="text-align: justify;">La integración con JBullet la he hecho transparente a los niveles mencionados antes. La he hecho creando una única clase (DinamicaJBullet), que es usada en un objeto base si la aplicación es del tercer nivel (puede haber varios objetos base cada uno con su DinamicaJBullet), o como dinámica del mundo en una aplicación que use el segundo nivel.</p>
+<p style="text-align: justify;">En cuanto a los tres pasos que mencionaba al principio para la integración, han sido muy fáciles.</p>
+<p style="text-align: justify;">Para definir las formas de colisión de los objetos he implementado de momento esferas y <em>convex hulls</em> (éstos son mallas de triangulos convexas) La creación de mallas de colisión ha sido directa porque yo ya usaba convex hulls para las colisiones (la forma de detectar colisiones más usual) Más tarde añadiré mallas triangulares cóncavas para objetos estáticos.</p>
+<p style="text-align: justify;">El segundo paso, la llamada a la simulacion de JBullet es un paso trivial. Mientras que el último, la obtención de los valores de los objetos también ha sido muy fácil ya que JBullet usa matrices y cuaterniones compatibles con OpenGL (básicamente, usa el mismo sistema de coordenadas XYZ)</p>
+
+<h3 style="text-align: justify;">Objetos cinemáticos</h3>
+<p style="text-align: justify;">En Bullet, un objeto cinemático es aquél cuya <em>pose</em> (abbrv. posición y orientación) está controlada por el juego, no por la física de JBullet. En lugar de obtenerse la pose de Bullet en cada frame para actualizar los objetos 3d, es al revés, en cada frame se escribe la pose en el objeto de JBullet, calculada mediante alguna animación o lo que sea. Los objetos cinemáticos colisionan con objetos normales y afectan a éstos, pero los cinemáticos no son afectados por los objetos normales.</p>
+<p style="text-align: justify;">En mi caso he utilizado estos objetos cinemáticos para definir las colisiones de los brazos, las manos y los dedos del astronauta. El tronco del astronauta sigue siendo un objeto JBullet normal, pero los brazos (que están acoplados al tronco en mi motor, pero no en JBullet) actualizan su posición como objetos cinemáticos. Se pueden empujar y manipular objetos:</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/12/pruebajbullet3.png"><img class="aligncenter size-large wp-image-847" alt="pruebajbullet3" src="http://yombo.org/wp-content/uploads/2013/12/pruebajbullet3-1024x576.png" width="625" height="351" /></a></p>
+<iframe src="//www.youtube.com/embed/LlVl0tpV5xo?rel=0" height="351" width="625" allowfullscreen="" frameborder="0"></iframe>
+<p style="text-align: justify;">Hasta la próxima!</p>
+<p style="text-align: justify;">1- sistema solar, sin mayúsculas, porque podría ser cualquier sistema solar</p>
+<p style="text-align: justify;">2- Un objeto fijo mantiene una posición fija respecto al padre, pero la orientación sigue siendo en marco del mundo. En cambio, un objeto acoplado tiene la orientación así como la posición relativas al padre.</p>

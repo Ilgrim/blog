@@ -1,0 +1,19 @@
+---
+title: "El NodoTV"
+date: 2013-03-19 15:14:06
+tags: 
+---
+<p style="text-align: justify;">Como dije hace unos días el NodoTV funciona, es capaz de recibir una imagen por el puerto serie (vía USB) y mostrarla a 216x216 píxels en blanco y negro (bueno, el monitor que uso es de fósforo verde) El NodoTV usa, al igual que la consola Yombox, la librería para Arduino TVOut. Aquí unas fotos de su construcción:</p>
+<p style="text-align: justify;">Los componentes... (aquí falta el conector RCA hembra de la salida de vídeo)</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/03/1-Contruyendo-NodoTV.jpg"><img class="aligncenter size-large wp-image-524" alt="1 Contruyendo NodoTV" src="http://yombo.org/wp-content/uploads/2013/03/1-Contruyendo-NodoTV-1024x576.jpg" width="625" height="351" /></a></p>
+<p style="text-align: justify;">Aquí empezando a poner componentes. Se ve la pista de abajo que está arrancada de cuando la cortamos con una sierra de disco (gracias Xisco), pero no pasa nada porque le soldé un alambre. En la parte de arriba también se le escapó el disco.</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/03/2-Contruyendo-NodoTV.jpg"><img class="aligncenter size-large wp-image-525" alt="2 Contruyendo NodoTV" src="http://yombo.org/wp-content/uploads/2013/03/2-Contruyendo-NodoTV-1024x576.jpg" width="625" height="351" /></a></p>
+<p style="text-align: justify;">Aquí ya casi terminado de soldar todo. Se ve la caja que usé para el proyecto, y dentro la plantilla que hice para ver que el diseño cabía. Si te estás preguntando de dónde obtuve esa cajita, es una caja de parches que rondaba por ahí:</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/03/3-Contruyendo-NodoTV.jpg"><img class="aligncenter size-large wp-image-526" alt="3 Contruyendo NodoTV" src="http://yombo.org/wp-content/uploads/2013/03/3-Contruyendo-NodoTV-1024x576.jpg" width="625" height="351" /></a></p>
+<p style="text-align: justify;">Aquí ya terminado, excepto que falta hacer los huecos en la caja para los conectores y el relé, que sobresale por arriba (por cierto funciona pero aún no he probado a alimentar/interrumpir la alimentación del monitor con él):</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/03/4-Contruyendo-NodoTV.jpg"><img class="aligncenter size-large wp-image-527" alt="4 Contruyendo NodoTV" src="http://yombo.org/wp-content/uploads/2013/03/4-Contruyendo-NodoTV-1024x683.jpg" width="625" height="416" /></a></p>
+<p style="text-align: justify;">Yo pretendía poner una web que mostrase el vídeo de una webcam que enfocara el monitor, y añadiendo un <em>form</em> a la web que permitiese enviar la <em>url</em> de una imagen a mostrar en el monitor vía NodoTV (alojando en un Tomcat todo excepto el streaming de la webcam que lo hace VLC) También se podría apagar y encender la TV a voluntad, o cuando no se esté una imagen, por ejemplo. Ha funcionado todo excepto la transmisión del vídeo con VLC, que por algún motivo sólo funciona desde 127.0.01, no puedo acceder al vídeo ni desde mi red local (para ver el vídeo uso el plugin de VLC para Firefox). No lo entiendo...</p>
+<p style="text-align: justify;">Edit: Se me olvidaba dejar el esquemático en png y en formato eagle...</p>
+<p style="text-align: justify;">Aviso: Esta imagen es en baja resolución, mejor usa la imagen de dentro del .ZIP que sigue... <a href="http://yombo.org/wp-content/uploads/2013/03/placa4.png"><img class="aligncenter size-large wp-image-542" alt="placa" src="http://yombo.org/wp-content/uploads/2013/03/placa4-1024x608.png" width="625" height="371" /></a></p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/03/eagle.zip">Diseño NodoTV en formato eagle y png </a></p>
+<p style="text-align: justify;">En fin, hasta la próxima!</p>

@@ -1,0 +1,11 @@
+---
+title: "Cable paralelo de Xilinx III: Fracaso"
+date: 2013-05-25 19:11:01
+tags: 
+---
+<p style="text-align: justify;">Como dije en el último post, el intento de programar los CPLD XC9572 con el Arduino no tuvo resultados. Pues bien, ya me llegaron los componentes y me he hecho el circuito programador que se conecta al puerto paralelo del ordenador, pero... tampoco ha funcionado. :-(</p>
+<p style="text-align: justify;">El cable es detectado y también el dispositivo que conecto (el CPLD), pero da error al obtener el ID del dispositivo. No lo reconoce como un dispositivo Xilinx (es el mensaje que da el programa Impact que viene con el entorno de programación ISE de Xilinx). Al mirar los mensajes de la consola, se ve la cadena de bits que esperaba recibir como ID y la que recibe en realidad, y la mayoría de bits están mal. A veces muestra un patrón y a veces otro (cambia entre dos concretos), por lo que seguramente es un problema eléctrico.</p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/05/1-Cable-cpld-paralelo.jpg"><img class="aligncenter size-large wp-image-694" alt="1 Cable cpld paralelo" src="http://yombo.org/wp-content/uploads/2013/05/1-Cable-cpld-paralelo-1024x768.jpg" width="625" height="468" /></a></p>
+<p style="text-align: justify;"><a href="http://yombo.org/wp-content/uploads/2013/05/2-Cable-cpld-paralelo.jpg"><img class="aligncenter size-large wp-image-695" alt="2 Cable cpld paralelo" src="http://yombo.org/wp-content/uploads/2013/05/2-Cable-cpld-paralelo-1024x768.jpg" width="625" height="468" /></a></p>
+<p style="text-align: justify;">Tengo una posibilidad de hacerlo funcionar que sería acortar el cable entre el puerto paralelo y el programador (los cables que van del programador al cpld, como ves arriba no hay cable sino un conector directamente, así que no se puede acortar más) Si acortar el cable paralelo no funciona lo dejaré estar y me compraré un programador, pero eso ya será más adelante. Y es que ahora, por culpa de la espera por los componentes, me ha dado por volver un poco a la faceta del software y volver con el Antares. En breve haré un post sobre ello.</p>
+<p style="text-align: justify;">Hasta la próxima!</p>
