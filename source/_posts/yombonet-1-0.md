@@ -19,5 +19,5 @@ Un pantallazo del programa en el gomas:
 Y un pantallazo del PC en otra conversación:
 
 <a href="http://yombo.org/wp-content/uploads/2015/07/ZXChat_2.png"><img class="aligncenter size-full wp-image-1174" src="http://yombo.org/wp-content/uploads/2015/07/ZXChat_2.png" alt="ZXChat_2" width="593" height="478" /></a>
-<p style="text-align: justify;">El servidor necesita unos retoques (limitar la salida a los ultimos 768 bytes) y el chat ya funcionará perfectamente. Yomboserver en 192.168.1.13 (este sitio) está activo a veces (ver página principal) pero se podrán replicar los servidores, es muy sencillo.</p>
+<p style="text-align: justify;">El servidor necesita unos retoques (limitar la salida a los ultimos 768 bytes) y el chat ya funcionará perfectamente. Yomboserver en yombo.org (este sitio) está activo a veces (ver página principal) pero se podrán replicar los servidores, es muy sencillo.</p>
 <p style="text-align: justify;">Nada más, hasta la próxima!</p>
