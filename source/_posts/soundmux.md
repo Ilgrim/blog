@@ -23,7 +23,3 @@ Los chips utilizados son:
 Las resistencias son las pull-up del conmutador. Se necesita activación por nivel bajo a la entrada del codificador.
 
 ![SoundMux0](http://yombo.org/wp-content/uploads/2017/01/soundmux/soundmux0.jpg)
-
-![SoundMux1](http://yombo.org/wp-content/uploads/2017/01/soundmux/soundmux1.jpg)
-
-![SoundMux2](http://yombo.org/wp-content/uploads/2017/01/soundmux/soundmux2.jpg)
