@@ -1,19 +1,19 @@
 categories: Categorías
-search: Búsqueda
+search: Buscar
 tags: Tags
-tagcloud: Nube de tags
-tweets: Tuits
+tagcloud: Nube de Tags
+tweets: Tweets
 prev: Previo
 next: Siguiente
 comment: Comentarios
 archive_a: Archivos
 archive_b: "Archivos: %s"
 page: Página %d
-recent_posts: Entradas recientes
-newer: Anteriores
-older: Posteriores
+recent_posts: Posts recientes
+newer: Nuevo
+older: Viejo
 share: Compartir
-powered_by: Impulsado por
-rss_feed: Suscripción RSS
+powered_by: Construido por
+rss_feed: RSS
 category: Categoría
 tag: Tag
